@@ -1,0 +1,75 @@
+\section{Zombis}
+\subsection{Types de zombis}
+Il y aura 5 types de zombis :
+\begin{itemize}
+  \item Les zombis faibles : ils sont simples à vaincre mais sont forts en horde.
+  \item Les zombis rapides : ils sont simples à vaincre mais sont difficiles à fuir.
+  \item Les zombis forts : ils sont difficiles à vaincre mais peuvent être fuit facilement.
+  \item Les zombis infectés : ils ont les même stats que les zombis faibles mais transforment en zombis directement.
+  \item Les zombis boss : ils sont forts et rapides, mais ne sont jamais en horde.
+\end{itemize}
+\subsection{Caractéristiques des zombis}
+Les zombis aussi possèdent des caractéristiques propres :
+\begin{itemize}
+  \item Type : Le zombi possède un type correspondant à ceux détaillés plus haut.
+  \item État : Le zombi peut-être au repos ou en chasse. Certaines caractéristiques de zombis peuvent avoir plusieurs valeurs en fonction de son état. Auquel cas, les valeurs sont notés comme ceci : ValeurRepos // ValeurChasse.
+  \item Vie : Le zombi possède un certain nombre de point de vie en fonction de son type. Lorsqu'il perd tous ses points de vie, le zombi meurt.
+  \item Attaque.
+  \item Précision.
+  \item Point de mouvement.
+  \item Vision : Cet attribut correspond à la portée à laquelle il peut voir les personnages.
+  \item Ouïe : Cet attribut correspond à la portée à laquelle il peut entendre les personnages.
+  \item Bruit : De manière similaire aux personnages, cette caractéristiques influe sur le bruit créés par les zombis.
+\end{itemize}
+En fonction de son type le zombi aura des caractéristiques de base différentes.
+\subsubsection{Zombis faibles}
+\begin{itemize}
+  \item Vie : 2.
+  \item Attaque : 1.
+  \item Précision : 3.
+  \item Point de mouvement : 1.
+  \item Vision : 5.
+  \item Ouïe : 5.
+  \item Bruit : 2.
+\end{itemize}
+Ce type de zombi possède des caractéristiques pouvant varier de +/- 10\%. \textbf{(à voir dans l'équilibrage si, lorsqu'on a un nombre à virgule, on l'arrondi ou on le tronque)}
+\subsubsection{Zombis rapides}
+\begin{itemize}
+  \item Vie : 2.
+  \item Attaque : 1.
+  \item Précision : 5.
+  \item Point de mouvement : 1//3.
+  \item Vision : 5.
+  \item Ouïe : 5.
+  \item Bruit : 2.
+\end{itemize}
+Ce type de zombi possède des caractéristiques pouvant varier de +/- 10\%. \textbf{(à voir dans l'équilibrage si, lorsqu'on a un nombre à virgule, on l'arrondi ou on le tronque)}
+\subsubsection{Zombis forts}
+\begin{itemize}
+  \item Vie : 4.
+  \item Attaque : 3.
+  \item Précision : 3.
+  \item Point de mouvement : 1.
+  \item Vision : 5.
+  \item Ouïe : 5.
+  \item Bruit : 3.
+\end{itemize}
+Ce type de zombi possède des caractéristiques pouvant varier de +/- 10\%. \textbf{(à voir dans l'équilibrage si, lorsqu'on a un nombre à virgule, on l'arrondi ou on le tronque)}
+\subsubsection{Zombis boss}
+\begin{itemize}
+  \item Vie : 8.
+  \item Attaque : 4.
+  \item Précision : 7.
+  \item Point de mouvement : 2.
+  \item Vision : 10.
+  \item Ouïe : 10.
+  \item Bruit : 2.
+\end{itemize}
+Ce type de zombi possède des caractéristiques pouvant varier de +/- 20\%. \textbf{(à voir dans l'équilibrage si, lorsqu'on a un nombre à virgule, on l'arrondi ou on le tronque)}
+\subsection{Génération de zombis}
+Sur chaque carte, il y a des points de génération de zombis. Ceux-ci possèdent une portée nommée p et un seuil s et une fréquence d'apparition f. La portée se compte en terme de changement de tile sur les directions verticales et horizontales. Considérons N le nombre de zombis dans la zone couverte par p, et P le nombre de tiles couvertes par la portée p. Considérons aussi les fonctions Arr(x) qui arrondi x à l'inférieur, et Pos(x) qui rends x s'il est supérieur à zéro.
+\\\\
+A la fin de chaque tour (humain+zombi), il apparait à ce point de génération un nombre de zombis, noté Z, selon cet algorithme :\\\\
+Z = Arr[Pos((s-N)*(f-(f*N/2*P))].
+\textbf{Formule provisoire.}\\\\
+Dans cette formule, le premier terme permet simplement d'empêcher la génération de zombis s'il y a au sein de la zone couverte par la portée, un nombre de zombi supérieur au seuil.
